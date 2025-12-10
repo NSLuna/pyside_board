@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environment
+venv/
+ENV/
+env/
+
+# SQLite / DB files
+*.sqlite3
+*.db
+db/
+database/
+*.bak
+
+# OS-generated files
+Thumbs.db
+.DS_Store
+
+# PySide6 build/cache
+build/
+dist/
+*.qrc
+*.qmlc
+*.jsc
+*.uic
+*.rcc
+
+
+# VSCode settings
+.vscode/
+
+# Logs
+*.log
