@@ -51,6 +51,14 @@ class DBManager:
         row = cursor.fetchone()
         conn.close()
         return row
+    
+    def get_post(self, post_id):
+        conn = self._connect()
+        cursor = conn.cursor()
+        cursor.execute("select * from posts where id = ?", (post_id,))
+        post = cursor.fetchone()
+        conn.close()
+        return post
 
     def update_post(self, post_id, title, content):
         now = datetime.now().isoformat(" ").split(".")[0]
