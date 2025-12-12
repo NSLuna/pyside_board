@@ -36,6 +36,11 @@ class CreatePage(QWidget):
 
         self.setLayout(layout)
 
+    def clear_inputs(self):
+        self.title_input.clear()
+        self.author_input.clear()
+        self.content_input.clear()
+
     def save_post(self):
         title = self.title_input.text()
         author = self.author_input.text()

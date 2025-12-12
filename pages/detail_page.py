@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton, QTextEdit,QHBoxLayout
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton, QTextEdit,QHBoxLayout, QMessageBox
 from PySide6.QtCore import Signal
 
 class DetailPage(QWidget):
@@ -23,7 +23,7 @@ class DetailPage(QWidget):
         self.content.setReadOnly(True)
 
         layout.addWidget(self.title_label)
-        layout.addWidget(self.title_label)
+        layout.addWidget(self.author_label)
         layout.addWidget(self.content)
 
 
@@ -46,6 +46,14 @@ class DetailPage(QWidget):
         self.setLayout(layout)
 
     def handle_delete(self):
-        """해당 글 삭제"""
-        self.db.delete_post(self.post_id)
-        self.deleted.emit()    
+        reply = QMessageBox.question(
+            self, 
+            "삭제 확인",
+            "정말 삭제하시겠습니까?",
+            QMessageBox.Yes | QMessageBox.No 
+        )
+        
+        if reply == QMessageBox.Yes:
+            self.db.delete_post(self.post_id)
+            QMessageBox.information(self,"삭제됨", "정상적으로 삭제되었습니다!")
+            self.deleted.emit()    
